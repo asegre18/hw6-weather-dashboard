@@ -15,12 +15,12 @@ body {
     min-height: 5rem;
   }
   
-  .jumbotron {
+  .navbar .navbar-brand {
     text-align: center;
-    background-color: transparent;
-    color: black;
-    border-radius: 0;
-    border-bottom: 10px solid black;
+  }
+
+  .bg-input {
+      padding: 15px;
   }
   
   .description{
@@ -34,18 +34,8 @@ body {
   
   .row {
     white-space: pre-wrap;
-    height: 80px;
     border-top: 1px solid white;;
-    margin-bottom: 5px;
   }
-  /* getting overwritten by bootstrap css */
-  /* .col-sm-1 {
-  padding-right: none !important;
-  padding-left: none !important;
-  }
-  .col-sm-10 {
-    padding-left: none !important;
-  } */
   
   .hour {
     background-color: #ffffff;
