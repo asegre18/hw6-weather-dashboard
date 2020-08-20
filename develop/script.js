@@ -13,7 +13,7 @@ $(document).ready(function () {
       var wind = response.wind.speed;
       var humidity = response.main.humidity;
       var temp = (parseInt(response.main.temp) - 273.15) * 1.80 + 32;
-      $('.city').append('<h1>').text(`City: ${city}`).css("font-size", 'xxx-large');
+      $('.city-name').append('<h1>').text(`City: ${city}`).css("font-size", 'xxx-large');
       $('.wind').append('<p>').text(`Wind Speed: ${wind} m/h`);
       $('.humidity').append('<p>').text(`Humidity: ${humidity}%`);
       $('.temp').append('<p>').text(`Temperature: ${temp} F`);
