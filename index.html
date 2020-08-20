@@ -21,7 +21,7 @@
   <div class="container">
     <!-- create a card with the form for the user input on the left 4 columns col-md-4 -->
     <div class="row">
-      <div class="col-md-4 bg-input">
+      <div class="col-sm-3 bg-input">
         <h4>Search by City:</h4>
         <form id="city-input">
           <div><input type="text" id="city-name"></div>
@@ -36,11 +36,10 @@
         <button>Clear Recent Searches</button>
       </div>
       <div id="show"></div>
-    </div>
-    <!-- create a card for the current weather with date listed using moment on the right with 8 columns -->
+      <!-- create a card for the current weather with date listed using moment on the right with 8 columns -->
     <!-- present user w/ city name, date, icon from library, temp, humidity, wind speed, UV index -->
     <div class="container">
-      <div class="col-md-8 weather-conditions">
+      <div class="col-sm-8 float-sm-right current-weather-conditions">
         <h4>Current Weather Conditions:</h4>
         <div id="city"></div>
         <div id="date"></div>
@@ -51,11 +50,26 @@
         <div id="uv-index"></div>
       </div>
     </div>
+    </div>
+    <!-- create a card for the current weather with date listed using moment on the right with 8 columns -->
+    <!-- present user w/ city name, date, icon from library, temp, humidity, wind speed, UV index -->
+    <!-- <div class="container">
+      <div class="col-sm-9 float-right current-weather-conditions">
+        <h4>Current Weather Conditions:</h4>
+        <div id="city"></div>
+        <div id="date"></div>
+        <div id="icon"></div>
+        <div id="temp"></div>
+        <div id="humidity"></div>
+        <div id="wind-speed"></div>
+        <div id="uv-index"></div>
+      </div>
+    </div> -->
     <!-- create a card with with 5 cards within it for the 5-day forecast below the current weather card with 8 columns - also use the icon from library-->
-    <div class="container-fluid">
+    <div class="container-fluid five-day-forecast">
       <h3>5-Day Forecast!</h3>
       <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
-        <div class="dayOne">
+        <div class="day-one">
           <p class="date"></p>
           <p class="icon"></p>
           <p class="temp"></p>
@@ -63,7 +77,7 @@
         </div>
       </div>
       <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
-        <div class="dayTwo">
+        <div class="day-two">
           <p class="date"></p>
           <p class="icon"></p>
           <p class="temp"></p>
@@ -71,16 +85,7 @@
         </div>
       </div>
       <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
-        <div class="dayThree">
-          <p class="date"></p>
-          <p class="icon"></p>
-          <p class="temp"></p>
-          <p class="humidity"></p>
-        </div>
-      </div>
-
-      <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
-        <div class="dayFour">
+        <div class="day-three">
           <p class="date"></p>
           <p class="icon"></p>
           <p class="temp"></p>
@@ -89,7 +94,16 @@
       </div>
 
       <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
-        <div class="dayFive">
+        <div class="day-four">
+          <p class="date"></p>
+          <p class="icon"></p>
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+      </div>
+
+      <div class="card text-white bg-dark mb-3" style="max-width: 9rem;">
+        <div class="dayfive">
           <p class="date"></p>
           <p class="icon"></p>
           <p class="temp"></p>
@@ -98,6 +112,7 @@
       </div>
 
       <!-- weather library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
       <!-- Moment linked below -->
