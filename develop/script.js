@@ -40,34 +40,44 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
+            console.log(response.list.length);
             // try to use for loop to add the 5 day forecast without having to type each day 1 by 1
-            // for (let i = 0; i < 5; i++) {
-            //     // const element = array[i];
-            //     let $date = moment().format("M/D/YYYY");
-            // let $icon = response.list[i].weather[i].icon;
-            // let $img = "http://openweathermap.org/img/wn/" + $icon + ".png";
-            // let $imgsrc = $("<img>").attr("src", $img);
-            // let $temp = response.list[i].main.temp + " °F";
-            // let dayOneTempFar = ($temp - 273.15) * 1.8 + 32;
-            // let dayOneHum = response.list[i].main.humidity + "%";
-            // }
+            for (let i = 0; i < response.list.length; i+=7) {
+                // const element = array[i];
+                let date = moment().format("M/D/YYYY");
+            let iconN = response.list[i].weather[i].icon;
+            let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
+            let $imgsrc = $("<img>").attr("src", img);
+            let temp = response.list[i].main.temp + " °F";
+            let tempFar = (temp - 273.15) * 1.8 + 32;
+            let hum = response.list[i].main.humidity + "%";
+            let $date= $("<p>").text(date);
+            let $img = $("<p>").text(iconN);
+            let $temp = $("<p>").text("Temp: " + temp);
+            let $hum = $("<p>").text("Humidity: " + hum);
+            // $($(".five-day-forecast").attr("card", )
+            $(".five-day-forecast").append($date);
+            $(".five-day-forecast").append($img);
+            $(".five-day-forecast").append($temp);
+            $(".five-day-forecast").append($hum);
+            }
             // add day1 here
-            let dayOne = moment().format("M/D/YYYY");
-            let dayOneIcon = data.list[0].weather[0].icon;
-            let dayOneImage = "http://openweathermap.org/img/wn/" + dayOneIcon + ".png";
-            let dayOneImageSrc = $("<img>").attr("src", dayOneImage);
-            let dayOneTemp = data.list[0].main.temp + " °F";
-            let dayOneTempFar = (dayOneTemp - 273.15) * 1.8 + 32;
-            let dayOneHum = data.list[0].main.humidity + "%";
-            let $dayOneDate = $("<p>").text(dayOne);
-            let $dayOneImage = $("<p>").text(dayOneIcon);
-            let $dayOneTemp = $("<p>").text("Temp: " + dayOneTemp);
-            let $dayOneHum = $("<p>").text("Humidity: " + dayOneHum);
+            // let dayOne = moment().format("M/D/YYYY");
+            // let dayOneIcon = data.list[0].weather[0].icon;
+            // let dayOneImage = "http://openweathermap.org/img/wn/" + dayOneIcon + ".png";
+            // let dayOneImageSrc = $("<img>").attr("src", dayOneImage);
+            // let dayOneTemp = data.list[0].main.temp + " °F";
+            // let dayOneTempFar = (dayOneTemp - 273.15) * 1.8 + 32;
+            // let dayOneHum = data.list[0].main.humidity + "%";
+            // let $dayOneDate = $("<p>").text(dayOne);
+            // let $dayOneImage = $("<p>").text(dayOneIcon);
+            // let $dayOneTemp = $("<p>").text("Temp: " + dayOneTemp);
+            // let $dayOneHum = $("<p>").text("Humidity: " + dayOneHum);
 
-            $(".dayOne").append($dayOneDate);
-            $(".dayOne").append($dayOneImage);
-            $(".dayOne").append($dayOneTemp);
-            $(".dayOne").append($dayOneHum);
+            // $(".dayOne").append($dayOneDate);
+            // $(".dayOne").append($dayOneImage);
+            // $(".dayOne").append($dayOneTemp);
+            // $(".dayOne").append($dayOneHum);
         });
     };
 
