@@ -1,20 +1,6 @@
 $(document).ready(function () {
     var APIkey = 'd11771b7ba65e99baa089a03cbd1362b';
     var cityChoice = $("#city-name").val();
-    // $.ajax({
-    //     url: `https://api.openweathermap.org/data/2.5/weather?q=${cityChoice},&units=imperial&appid=${APIkey}`,
-    //     method: "GET"
-    // }).then(function (response) {
-    //     console.log(response);
-    //     var city = response.name;
-    //     var wind = response.wind.speed;
-    //     var humidity = response.main.humidity;
-    //     var temp = (parseInt(response.main.temp) - 273.15) * 1.80 + 32;
-    //     $('.city-name').append('<h1>').text(`City: ${city}`).css("font-size", 'xxx-large');
-    //     $('.wind').append('<p>').text(`Wind Speed: ${wind} m/h`);
-    //     $('.humidity').append('<p>').text(`Humidity: ${humidity}%`);
-    //     $('.temp').append('<p>').text(`Temperature: ${temp} F`);
-    // });
 
     $("#city-input").submit(function (event) {
         event.preventDefault();
@@ -27,7 +13,7 @@ $(document).ready(function () {
             url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${APIkey}`,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             // console.log(response.name);
             $("#city").html(response.name);
             $("#date").html(moment().format("M/D/YYYY"));
@@ -40,64 +26,51 @@ $(document).ready(function () {
             url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${APIkey}`,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
-            console.log(response.list.length);
-            // try to use for loop to add the 5 day forecast without having to type each day 1 by 1
-            // const $forecastBox = $(".five-day-forecast");
-            for (let i = 0; i < response.list.length; i+=8) {
-                // const element = array[i];
-                // $forecastBox..html;
-                console.log(i);
-                // $forecastBox.addClass("card text-white bg-dark mb-3");
-                // forecastBox.attr("class, card text-white bg-dark mb-3");
-
+            // console.log(response);
+            // console.log(response.list.length);
+            // use for loop to add the 5 day forecast without having to type each day 1 by 1
+            for (let i = 0; i < response.list.length; i += 8) {
+                // console.log(i);
                 let date = moment(response.list[i].dt_txt).format("M/D/YYYY");
-            let iconN = response.list[i].weather[0].icon;
-            let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
-            let $imgsrc = $("<img>").attr("src", img);
-            let temp = response.list[i].main.temp + " °F";
-            let tempFar = (temp - 273.15) * 1.8 + 32;
-            let hum = response.list[i].main.humidity + "%";
-            let $date= $("<p>").text(date);
-            // let $img = $("<img>").attr("src", img);
-            let $temp = $("<p>").text("Temp: " + temp);
-            let $hum = $("<p>").text("Humidity: " + hum);
-            let $day = $("<div>").attr("class", "card").append($date);
-            $day.append($imgsrc);
-            $day.append($temp);
-            $day.append($hum);
-            $(".five-day-forecast").append($day);
-            // $(".five-day-forecast").addClass("card");
-            // $forecastBox.append($date);
-            // $forecastBox.append($imgsrc);
-            // $forecastBox.append($temp);
-            // $forecastBox.append($hum);
-            // without the card box
-            // $(".five-day-forecast").append($date);
-            // $(".five-day-forecast").append($imgsrc);
-            // $(".five-day-forecast").append($temp);
-            // $(".five-day-forecast").append($hum);
+                let iconN = response.list[i].weather[0].icon;
+                let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
+                let $imgsrc = $("<img>").attr("src", img);
+                let temp = response.list[i].main.temp + " °F";
+                let tempFar = (temp - 273.15) * 1.8 + 32;
+                let hum = response.list[i].main.humidity + "%";
+                let $date = $("<p>").text(date);
+                let $temp = $("<p>").text("Temp: " + temp);
+                let $hum = $("<p>").text("Humidity: " + hum);
+                let $day = $("<div>").attr("class", "card").append($date);
+                $day.append($imgsrc);
+                $day.append($temp);
+                $day.append($hum);
+                $(".five-day-forecast").append($day);
             }
-            // add day1 here
-            // let dayOne = moment().format("M/D/YYYY");
-            // let dayOneIcon = data.list[0].weather[0].icon;
-            // let dayOneImage = "http://openweathermap.org/img/wn/" + dayOneIcon + ".png";
-            // let dayOneImageSrc = $("<img>").attr("src", dayOneImage);
-            // let dayOneTemp = data.list[0].main.temp + " °F";
-            // let dayOneTempFar = (dayOneTemp - 273.15) * 1.8 + 32;
-            // let dayOneHum = data.list[0].main.humidity + "%";
-            // let $dayOneDate = $("<p>").text(dayOne);
-            // let $dayOneImage = $("<p>").text(dayOneIcon);
-            // let $dayOneTemp = $("<p>").text("Temp: " + dayOneTemp);
-            // let $dayOneHum = $("<p>").text("Humidity: " + dayOneHum);
-
-            // $(".dayOne").append($dayOneDate);
-            // $(".dayOne").append($dayOneImage);
-            // $(".dayOne").append($dayOneTemp);
-            // $(".dayOne").append($dayOneHum);
         });
     };
+    let srcHistory = JSON.parse(localStorage.getItem("#search")) || [];
+    const $searchBtn = $("#submit-btn");
+    $searchBtn.click(function () {
+        const search = $("#city-name").val();
+        console.log(search);
+        srcHistory.push(search);
+        localStorage.setItem("search", JSON.stringify(srcHistory));
+        addSearchHistory();
+    });
 
+    const $history = $("#history");
+    function addSearchHistory() {
+       $history.html("");
+        for (let i=0; i<srcHistory.length; i++) {
+            const historyItem = $("<input>");
+            historyItem.attr("type","text");
+            historyItem.attr("readonly",true);
+            historyItem.attr("class", "form-control d-block bg-white");
+            historyItem.attr("value", srcHistory[i]);
+            $history.append(historyItem[i]);
+        }
+    }
     let localNameOfCity = $(".city-name");
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
