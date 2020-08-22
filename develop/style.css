@@ -33,6 +33,9 @@ body {
  .card {
      display: inline-block;
      max-width: 9rem;
+     background-color: royalblue;
+     margin-right: 25px;
+     margin-bottom: 5px;
  }
   
   

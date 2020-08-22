@@ -44,13 +44,15 @@ $(document).ready(function () {
             console.log(response.list.length);
             // try to use for loop to add the 5 day forecast without having to type each day 1 by 1
             // const $forecastBox = $(".five-day-forecast");
-            for (let i = 0; i < response.list.length; i+=7) {
+            for (let i = 0; i < response.list.length; i+=8) {
                 // const element = array[i];
-                // $forecastBox.innerHMTL = "";
+                // $forecastBox..html;
+                console.log(i);
                 // $forecastBox.addClass("card text-white bg-dark mb-3");
                 // forecastBox.attr("class, card text-white bg-dark mb-3");
-                let date = moment().format("M/D/YYYY");
-            let iconN = response.list[i].weather[i].icon;
+
+                let date = moment(response.list[i].dt_txt).format("M/D/YYYY");
+            let iconN = response.list[i].weather[0].icon;
             let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
             let $imgsrc = $("<img>").attr("src", img);
             let temp = response.list[i].main.temp + " °F";
@@ -60,16 +62,21 @@ $(document).ready(function () {
             // let $img = $("<img>").attr("src", img);
             let $temp = $("<p>").text("Temp: " + temp);
             let $hum = $("<p>").text("Humidity: " + hum);
+            let $day = $("<div>").attr("class", "card").append($date);
+            $day.append($imgsrc);
+            $day.append($temp);
+            $day.append($hum);
+            $(".five-day-forecast").append($day);
             // $(".five-day-forecast").addClass("card");
             // $forecastBox.append($date);
             // $forecastBox.append($imgsrc);
             // $forecastBox.append($temp);
             // $forecastBox.append($hum);
             // without the card box
-            $(".five-day-forecast").append($date);
-            $(".five-day-forecast").append($imgsrc);
-            $(".five-day-forecast").append($temp);
-            $(".five-day-forecast").append($hum);
+            // $(".five-day-forecast").append($date);
+            // $(".five-day-forecast").append($imgsrc);
+            // $(".five-day-forecast").append($temp);
+            // $(".five-day-forecast").append($hum);
             }
             // add day1 here
             // let dayOne = moment().format("M/D/YYYY");
