@@ -30,6 +30,7 @@ $(document).ready(function () {
             console.log(response);
             // console.log(response.name);
             $("#city").html(response.name);
+            $("#date").html(moment().format("M/D/YYYY"));
             $("#icon").html("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>");
             $("#temp").html("Temperature: " + response.main.temp + " °F");
             $("#humidity").html("Humidity: " + response.main.humidity + "%");
@@ -42,8 +43,12 @@ $(document).ready(function () {
             console.log(response);
             console.log(response.list.length);
             // try to use for loop to add the 5 day forecast without having to type each day 1 by 1
+            // const $forecastBox = $(".five-day-forecast");
             for (let i = 0; i < response.list.length; i+=7) {
                 // const element = array[i];
+                // $forecastBox.innerHMTL = "";
+                // $forecastBox.addClass("card text-white bg-dark mb-3");
+                // forecastBox.attr("class, card text-white bg-dark mb-3");
                 let date = moment().format("M/D/YYYY");
             let iconN = response.list[i].weather[i].icon;
             let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
@@ -52,12 +57,17 @@ $(document).ready(function () {
             let tempFar = (temp - 273.15) * 1.8 + 32;
             let hum = response.list[i].main.humidity + "%";
             let $date= $("<p>").text(date);
-            let $img = $("<p>").text(iconN);
+            // let $img = $("<img>").attr("src", img);
             let $temp = $("<p>").text("Temp: " + temp);
             let $hum = $("<p>").text("Humidity: " + hum);
-            // $($(".five-day-forecast").attr("card", )
+            // $(".five-day-forecast").addClass("card");
+            // $forecastBox.append($date);
+            // $forecastBox.append($imgsrc);
+            // $forecastBox.append($temp);
+            // $forecastBox.append($hum);
+            // without the card box
             $(".five-day-forecast").append($date);
-            $(".five-day-forecast").append($img);
+            $(".five-day-forecast").append($imgsrc);
             $(".five-day-forecast").append($temp);
             $(".five-day-forecast").append($hum);
             }
