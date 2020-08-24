@@ -75,6 +75,6 @@ $(document).ready(function () {
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
         let value = localStorage.getItem(i);
-        localStorOutput.innerHTML += `${key}: ${value}<br />`;
+        localNameOfCity.innerHTML += `${key}: ${value}<br />`;
     }
 });
