@@ -10,20 +10,20 @@ $(document).ready(function () {
 
     function getWeather(cityName) {
         $.ajax({
-            url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${APIkey}`,
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${APIkey}`,
             method: "GET"
         }).then(function (response) {
             // console.log(response);
             // console.log(response.name);
             $("#city").html(response.name);
             $("#date").html(moment().format("M/D/YYYY"));
-            $("#icon").html("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>");
+            $("#icon").html("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>");
             $("#temp").html("Temperature: " + response.main.temp + " °F");
             $("#humidity").html("Humidity: " + response.main.humidity + "%");
             $("#wind-speed").html("Wind Speed: " + response.wind.speed + " mph");
         });
         $.ajax({
-            url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${APIkey}`,
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${APIkey}`,
             method: "GET"
         }).then(function (response) {
             // console.log(response);
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 // console.log(i);
                 let date = moment(response.list[i].dt_txt).format("M/D/YYYY");
                 let iconN = response.list[i].weather[0].icon;
-                let img = "http://openweathermap.org/img/wn/" + iconN + ".png";
+                let img = "https://openweathermap.org/img/wn/" + iconN + ".png";
                 let $imgsrc = $("<img>").attr("src", img);
                 let temp = response.list[i].main.temp + " °F";
                 let tempFar = (temp - 273.15) * 1.8 + 32;
